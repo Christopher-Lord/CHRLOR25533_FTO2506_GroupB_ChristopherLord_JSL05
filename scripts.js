@@ -46,13 +46,60 @@ const taskModal = document.getElementById("task-modal-container");
 const modalClose = document.querySelectorAll(".task-modal-close-btn");
 
 const newTaskBtn = document.getElementById("add-task-btn");
-const newTaskModal = document.getElementById("add-task-modal-container");
 const createTaskBtn = document.getElementById("create-task-btn");
+
+const newTaskModal = document.getElementById("add-task-modal-container");
 const newTaskForm = document.getElementById("add-task-form");
 
-let taskTitle = document.getElementById("task-title");
-let taskDescription = document.getElementById("task-description");
-let taskStatus = document.getElementById("task-status");
+const titleErrorMsg = document.getElementById("title-error-msg");
+const descriptionErrorMsg = document.getElementById("description-error-msg");
+
+const taskTitle = document.getElementById("task-title");
+const taskDescription = document.getElementById("task-description");
+const taskStatus = document.getElementById("task-status");
+
+const titleInput = document.getElementById("add-task-title");
+const descriptionInput = document.getElementById("add-task-description");
+const statusInput = document.getElementById("add-task-status");
+
+function saveTasksToStorage() {
+  let allTasksJSON = JSON.stringify(allTasks);
+  localStorage.setItem("allTasks", allTasksJSON);
+}
+
+function retrieveTasksFromStorage() {
+  let savedTasks = localStorage.getItem("allTasks");
+  try {
+    let parsedTasks = JSON.parse(savedTasks);
+    allTasks.length = 0;
+    parsedTasks.forEach((task) => {
+      allTasks.push(task);
+    });
+  } catch (error) {
+    console.error("Error parsing JSON", error);
+  }
+}
+
+function getTaskContainerByStatus(status) {
+  return document.getElementById(`${status}-tasks-container`);
+}
+
+function clearExistingTasks() {
+  document.querySelectorAll(".tasks-container").forEach((container) => {
+    container.innerHTML = "";
+  });
+}
+
+function getNewTask() {
+  let newTask = {};
+
+  newTask.id = allTasks.length + 1;
+  newTask.title = titleInput.value;
+  newTask.description = descriptionInput.value;
+  newTask.status = statusInput.value;
+
+  return newTask;
+}
 
 // Function to create a new div and style it correctly
 function createTaskElement(task) {
@@ -92,8 +139,13 @@ function displayTasks(task) {
 
 function renderTasks() {
   clearExistingTasks();
+  retrieveTasksFromStorage();
   allTasks.forEach(displayTasks);
 }
+
+newTaskBtn.addEventListener("click", function () {
+  newTaskModal.style.display = "block";
+});
 
 modalClose.forEach((button) => {
   button.addEventListener("click", function () {
@@ -101,47 +153,42 @@ modalClose.forEach((button) => {
     newTaskModal.style.display = "none";
 
     newTaskForm.reset();
+
+    titleErrorMsg.style.display = "none";
+    descriptionErrorMsg.style.display = "none";
   });
-});
-
-// NEW CODE
-
-function getTaskContainerByStatus(status) {
-  return document.getElementById(`${status}-tasks-container`);
-}
-
-/**
- * Clears all existing task-divs from all task containers.
- */
-function clearExistingTasks() {
-  document.querySelectorAll(".tasks-container").forEach((container) => {
-    container.innerHTML = "";
-  });
-}
-
-function getNewTask() {
-  let newTask = {};
-
-  newTask.id = allTasks.length + 1;
-  newTask.title = document.getElementById("add-task-title").value;
-  newTask.description = document.getElementById("add-task-description").value;
-  newTask.status = document.getElementById("add-task-status").value;
-
-  return newTask;
-}
-
-newTaskBtn.addEventListener("click", function () {
-  newTaskModal.style.display = "block";
 });
 
 newTaskForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const newTask = getNewTask();
+
+  if (newTask.title.trim() === "") {
+    titleErrorMsg.textContent = "❗Please fill out this field.";
+    titleErrorMsg.style.display = "block";
+    return;
+  }
+  if (newTask.description.trim() === "") {
+    descriptionErrorMsg.textContent = "❗Please fill out this field.";
+    descriptionErrorMsg.style.display = "block";
+    return;
+  }
+
   allTasks.push(newTask);
+
+  saveTasksToStorage();
 
   renderTasks();
   newTaskModal.style.display = "none";
   newTaskForm.reset();
+});
+
+titleInput.addEventListener("input", () => {
+  titleErrorMsg.style.display = "none";
+});
+
+descriptionInput.addEventListener("input", () => {
+  descriptionErrorMsg.style.display = "none";
 });
 
 document.addEventListener("DOMContentLoaded", renderTasks);
