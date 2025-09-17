@@ -82,7 +82,7 @@
         </main>
 
         <!-- Edit Task Modal and form elements -->
-        <dialog id="task-modal-container" class="task-modal-container">
+        <section id="task-modal-container" class="task-modal-container">
           <div class="task-modal-content">
             <span class="task-modal-close-btn" id="task-modal-close"
               >&times;</span
@@ -120,10 +120,10 @@
               </select>
             </form>
           </div>
-        </dialog>
+        </section>
 
         <!-- Add New Task Modal -->
-        <dialog id="add-task-modal-container" class="task-modal-container">
+        <section id="add-task-modal-container" class="task-modal-container">
           <div class="task-modal-content">
             <span class="task-modal-close-btn" id="add-task-modal-close"
               >&times;</span
@@ -137,7 +137,6 @@
                 id="add-task-title"
                 class="task-title-input"
                 name="task-title"
-                required
               ></textarea>
 
               <label for="task-description">Description</label>
@@ -146,7 +145,6 @@
                 id="add-task-description"
                 class="task-description-input"
                 name="task-description"
-                required
               ></textarea>
 
               <label for="task-status">Status</label>
@@ -166,8 +164,10 @@
                 id="create-task-btn"
               />
             </form>
+            <p id="title-error-msg" class="title-error"></p>
+            <p id="description-error-msg" class="description-error"></p>
           </div>
-        </dialog>
+        </section>
         <!-- End of Add Task Modal -->
       </div>
     </div>
