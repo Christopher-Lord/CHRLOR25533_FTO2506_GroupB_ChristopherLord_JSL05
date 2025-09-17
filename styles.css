@@ -43,6 +43,7 @@ body {
   height: 100%;
 
   background-color: rgba(0, 0, 0, 0.5);
+  border: none;
 }
 
 .task-modal-content {
@@ -109,7 +110,7 @@ label {
   min-height: 2.5rem;
 
   border: 1px solid #828fa340;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .task-description-input {
@@ -125,7 +126,7 @@ label {
   min-height: 7rem;
 
   border: 1px solid #828fa340;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .task-title-input:focus,
@@ -149,6 +150,10 @@ select {
 
   border: 1px solid #828fa340;
   border-radius: 4px;
+}
+
+#add-task-form select {
+  margin-bottom: 1.5rem;
 }
 
 select::picker-icon {
@@ -179,6 +184,26 @@ option::checkmark {
 select:hover,
 option:hover {
   background: var(--secondary-color);
+}
+
+.create-task-btn {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4375rem;
+  color: #fff;
+
+  background: #635fc7;
+
+  border: none;
+  border-radius: 1.25rem;
+
+  padding: 0.5625rem;
+}
+
+.create-task-btn:hover {
+  cursor: pointer;
+  background: #4a48c2;
 }
 
 /* ================
@@ -274,13 +299,13 @@ header {
 
 .add-task-btn {
   font-family: inherit;
-  font-size: .9375rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   color: #fff;
   background: #635fc7;
 
-  padding: .9375rem 1.5625rem;
-  margin-right: .625rem; 
+  padding: 0.9375rem 1.5625rem;
+  margin-right: 0.625rem;
 
   border: none;
   border-radius: 1.5rem;
@@ -464,9 +489,9 @@ h2 {
   }
 
   .add-task-btn {
-    padding: .625rem 1.25rem;
+    padding: 0.625rem 1.25rem;
 
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -487,10 +512,10 @@ h2 {
     margin: 25% auto;
   }
 
-  .add-task-btn{
+  .add-task-btn {
     padding: 5px 11.7px 9px 11.7px;
 
-    font-size: .9375rem;
+    font-size: 0.9375rem;
   }
 
   .add-task-btn .add-task-text {
