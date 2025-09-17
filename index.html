@@ -15,7 +15,7 @@
       href="./assets/favicon-clear.svg"
     />
     <title>Kanban Task Management</title>
-    <script src="./scripts.js" async></script>
+    <script src="./scripts.js" defer></script>
   </head>
 
   <body>
@@ -44,7 +44,10 @@
             Launch Career
           </h2>
         </div>
-        <button class="add-task-btn" id="add-task-btn"><span class="add-task-plus">&plus;</span><span class="add-task-text"> Add New Task</span></button>
+        <button class="add-task-btn" id="add-task-btn">
+          <span class="add-task-plus">&plus;</span
+          ><span class="add-task-text"> Add New Task</span>
+        </button>
       </header>
 
       <div class="container">
@@ -79,7 +82,7 @@
         </main>
 
         <!-- Edit Task Modal and form elements -->
-        <div id="task-modal-container" class="task-modal-container">
+        <dialog id="task-modal-container" class="task-modal-container">
           <div class="task-modal-content">
             <span class="task-modal-close-btn" id="task-modal-close"
               >&times;</span
@@ -117,12 +120,12 @@
               </select>
             </form>
           </div>
-        </div>
+        </dialog>
 
         <!-- Add New Task Modal -->
-        <div id="add-task-modal-container" class="task-modal-container">
+        <dialog id="add-task-modal-container" class="task-modal-container">
           <div class="task-modal-content">
-            <span class="task-modal-close-btn" id="task-modal-close"
+            <span class="task-modal-close-btn" id="add-task-modal-close"
               >&times;</span
             >
             <h2>Add New Task</h2>
@@ -156,9 +159,15 @@
                 <option value="doing">doing</option>
                 <option value="done">done</option>
               </select>
+              <input
+                type="submit"
+                value="Create Task"
+                class="create-task-btn"
+                id="create-task-btn"
+              />
             </form>
           </div>
-        </div>
+        </dialog>
         <!-- End of Add Task Modal -->
       </div>
     </div>
