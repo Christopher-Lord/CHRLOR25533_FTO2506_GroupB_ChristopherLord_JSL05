@@ -206,6 +206,34 @@ option:hover {
   background: #4a48c2;
 }
 
+.title-error,
+.description-error {
+  display: none;
+  position: absolute;
+
+  background: var(--primary-color);
+  color: var(--secondary-font-color);
+
+  font-size: 0.8125rem;
+  font-family: inherit;
+  font-weight: 500;
+
+  padding: 1rem 1.125rem;
+  border-radius: .5rem;
+
+  box-shadow: 0 10px 20px #364E7E40;
+}
+
+.title-error {
+  top: 8.25rem;
+  left: 6.25rem;
+}
+
+.description-error {
+  top: 18.125rem;
+  left: 6.25rem;
+}
+
 /* ================
    Sidebar Layout
 ================ */
