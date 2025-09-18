@@ -41,19 +41,22 @@ const allTasks = [
   },
 ];
 
-// Create variables
+// Modal Variables
 const taskModal = document.getElementById("task-modal-container");
 const modalClose = document.querySelectorAll(".task-modal-close-btn");
-
-const newTaskBtn = document.getElementById("add-task-btn");
-const createTaskBtn = document.getElementById("create-task-btn");
-
 const newTaskModal = document.getElementById("add-task-modal-container");
 const newTaskForm = document.getElementById("add-task-form");
 
+// Button variables
+const newTaskBtn = document.getElementById("add-task-btn");
+const createTaskBtn = document.getElementById("create-task-btn");
+const deleteTaskBtn = document.getElementById("delete-task-btn")
+
+// Error Messages
 const titleErrorMsg = document.getElementById("title-error-msg");
 const descriptionErrorMsg = document.getElementById("description-error-msg");
 
+// Input variables
 const taskTitle = document.getElementById("task-title");
 const taskDescription = document.getElementById("task-description");
 const taskStatus = document.getElementById("task-status");
@@ -61,6 +64,9 @@ const taskStatus = document.getElementById("task-status");
 const titleInput = document.getElementById("add-task-title");
 const descriptionInput = document.getElementById("add-task-description");
 const statusInput = document.getElementById("add-task-status");
+
+// Empty Variable for storing the currently selected task
+let selectedTask;
 
 function saveTasksToStorage() {
   let allTasksJSON = JSON.stringify(allTasks);
@@ -118,6 +124,8 @@ function createTaskElement(task) {
 
 // Function to display the modal and add the corresponding task info to the correct fields
 function displayTaskModal(task) {
+  selectedTask = task;
+
   // Fetches each input field and adds the correct task info to each
   taskTitle.textContent = task.title;
   taskDescription.textContent = task.description;
@@ -125,6 +133,8 @@ function displayTaskModal(task) {
 
   // Changes the modal style so it displays
   taskModal.style.display = "block";
+
+  // console.log(selectedTask)
 }
 
 // Function to display the tasks on the web page
@@ -192,3 +202,18 @@ descriptionInput.addEventListener("input", () => {
 });
 
 document.addEventListener("DOMContentLoaded", renderTasks);
+
+function deleteTask(task) {
+  const indexToRemove = allTasks.indexOf(task)
+
+  allTasks.splice(indexToRemove, 1);
+}
+
+deleteTaskBtn.addEventListener("click", function() {
+  deleteTask(selectedTask);
+  saveTasksToStorage();
+  renderTasks();
+
+  taskModal.style.display = "none";
+  selectedTask = null;
+})
