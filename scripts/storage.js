@@ -1,3 +1,8 @@
+/**
+ * Storage Management Module:
+ * Handles saving data to and retrieving data from local storage
+ */
+
 import { allTasks } from "./initialData.js";
 
 /**
@@ -9,8 +14,7 @@ export function saveTasksToStorage() {
 }
 
 /**
- * Retrieves tasks from local storage
- * and Empties allTasks array and repopulates it with tasks from storage
+ * Retrieves tasks from local storage, empties allTasks array and repopulates it with tasks from storage
  */
 export function retrieveTasksFromStorage() {
   let savedTasks = localStorage.getItem("allTasks");

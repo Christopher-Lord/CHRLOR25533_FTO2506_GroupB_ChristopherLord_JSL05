@@ -1,7 +1,16 @@
+/**
+ * Task Management Module:
+ * Handles task creation/ deletion
+ * Handles sorting of tasks into correct containers
+ * Handles rendering of tasks onto the webpage
+ */
+
+// Importing necessary functions and variables from other modules
 import { displayTaskModal } from "./modals.js";
 import { allTasks } from "./initialData.js";
 import { retrieveTasksFromStorage } from "./storage.js";
 
+// Exporting variables to be used elsewhere
 export const titleInput = document.getElementById("add-task-title");
 export const descriptionInput = document.getElementById("add-task-description");
 export const statusInput = document.getElementById("add-task-status");

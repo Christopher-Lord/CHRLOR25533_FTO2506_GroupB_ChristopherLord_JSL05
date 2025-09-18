@@ -1,3 +1,9 @@
+/**
+ * Event Management Module:
+ * Handles all event listeners
+ */
+
+// Importing necessary functions and variables
 import { allTasks } from "./initialData.js";
 import {
   closeModals,
@@ -21,20 +27,24 @@ const newTaskBtn = document.getElementById("add-task-btn");
 const deleteTaskBtn = document.getElementById("delete-task-btn");
 const modalCloseBtn = document.querySelectorAll(".task-modal-close-btn");
 
+// Opens the Add New Task modal
 newTaskBtn.addEventListener("click", function () {
   newTaskModal.classList.add("visible");
 });
 
+// Runs the closeModals function when the 'x' is clicked
 modalCloseBtn.forEach((button) => {
   button.addEventListener("click", function () {
     closeModals();
   });
 });
 
+// Form submission event, gets user input, checks there are no empty inputs then adds the task
 newTaskForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const newTask = getNewTask();
 
+  // Form validation, no empty inputs are allowed
   if (newTask.title.trim() === "") {
     titleErrorMsg.textContent = "❗Please fill out this field.";
     titleErrorMsg.classList.add("visible");
@@ -48,11 +58,13 @@ newTaskForm.addEventListener("submit", function (event) {
 
   allTasks.push(newTask);
 
+  // Saves new task to storage, then re-renders all tasks and closes the form
   saveTasksToStorage();
   renderTasks();
   closeModals();
 });
 
+// Hides the error messages when the user starts to type in the input
 titleInput.addEventListener("input", () => {
   titleErrorMsg.classList.remove("visible");
 });
@@ -61,6 +73,7 @@ descriptionInput.addEventListener("input", () => {
   descriptionErrorMsg.classList.remove("visible");
 });
 
+// Deletes the currently selected task, saves the tasks to storage, then re-renders all tasks
 deleteTaskBtn.addEventListener("click", function () {
   deleteTask(selectedTask);
   saveTasksToStorage();

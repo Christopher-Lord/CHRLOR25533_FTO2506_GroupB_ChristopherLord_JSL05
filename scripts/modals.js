@@ -1,3 +1,9 @@
+/**
+ * Modal Management Module:
+ * Handles the display and closing of modals
+ */
+
+
 //Input Variables
 const taskTitle = document.getElementById("task-title");
 const taskDescription = document.getElementById("task-description");
@@ -31,6 +37,9 @@ export function displayTaskModal(task) {
   taskModal.classList.add("visible");
 }
 
+/**
+ * Removes the 'visible' class from all modal related elements and resets the form
+ */
 export function closeModals() {
   taskModal.classList.remove("visible");
   newTaskModal.classList.remove("visible");
