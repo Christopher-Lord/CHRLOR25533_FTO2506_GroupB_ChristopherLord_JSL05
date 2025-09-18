@@ -278,6 +278,10 @@ option:hover {
   left: 6.25rem;
 }
 
+.visible {
+  display: block;
+}
+
 /* ================
    Sidebar Layout
 ================ */
