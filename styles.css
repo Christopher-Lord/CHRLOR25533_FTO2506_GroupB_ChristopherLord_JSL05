@@ -134,6 +134,11 @@ label {
   outline-color: var(--secondary-font-color);
 }
 
+.task-title-input::placeholder,
+.task-description-input::placeholder {
+  color: #00000050;
+}
+
 select,
 ::picker(select) {
   appearance: base-select;
