@@ -1,4 +1,5 @@
-export const allTasks = [
+// Initial tasks array
+export const initialTasks = [
   {
     id: 1,
     title: "Launch Epic Career 🚀",
@@ -40,3 +41,6 @@ export const allTasks = [
     status: "done",
   },
 ];
+
+// Empty array for holding all of the stored tasks
+export const allTasks = [];
