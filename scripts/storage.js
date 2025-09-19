@@ -20,6 +20,7 @@ export function saveTasksToStorage() {
 export function retrieveTasksFromStorage() {
   let savedTasks = localStorage.getItem("allTasks");
 
+  // Runs if no tasks are saved in local storage, gets data from initialTasks
   if (!savedTasks) {
     initialTasks.forEach((task) => {
       allTasks.push(task);
