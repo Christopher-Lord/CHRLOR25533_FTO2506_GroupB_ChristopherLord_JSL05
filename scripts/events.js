@@ -4,7 +4,6 @@
  */
 
 // Importing necessary functions and variables
-import { allTasks } from "./initialData.js";
 import {
   closeModals,
   selectedTask,
@@ -19,6 +18,7 @@ import {
   deleteTask,
   titleInput,
   descriptionInput,
+  addTask,
 } from "./tasks.js";
 import { saveTasksToStorage } from "./storage.js";
 
@@ -56,10 +56,9 @@ newTaskForm.addEventListener("submit", function (event) {
     return;
   }
 
-  allTasks.push(newTask);
+  addTask(newTask);
 
-  // Saves new task to storage, then re-renders all tasks and closes the form
-  saveTasksToStorage();
+  // Re-renders all tasks and closes the form
   renderTasks();
   closeModals();
 });
