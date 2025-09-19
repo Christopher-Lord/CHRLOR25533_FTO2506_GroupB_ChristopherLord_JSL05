@@ -8,7 +8,7 @@
 // Importing necessary functions and variables from other modules
 import { displayTaskModal } from "./modals.js";
 import { allTasks } from "./initialData.js";
-import { retrieveTasksFromStorage } from "./storage.js";
+import { retrieveTasksFromStorage, saveTasksToStorage } from "./storage.js";
 
 // Exporting variables to be used elsewhere
 export const titleInput = document.getElementById("add-task-title");
@@ -46,6 +46,15 @@ export function getNewTask() {
   newTask.status = statusInput.value;
 
   return newTask;
+}
+
+/**
+ * Pushes new task object to the allTasks array and then saves to local storage
+ * @param {Object} task - New task object to add
+ */
+export function addTask(task) {
+  allTasks.push(task);
+  saveTasksToStorage();
 }
 
 /**
@@ -88,13 +97,14 @@ export function deleteTask(task) {
   const indexToRemove = allTasks.indexOf(task);
 
   allTasks.splice(indexToRemove, 1);
+  saveTasksToStorage();
 }
 
 /**
- * Clears existing tasks, retrieves all tasks from storage, then displays the tasks on the web page
+ * Retrieves all tasks from storage, clears existing tasks, then displays the tasks on the web page
  */
 export function renderTasks() {
+  const tasks = retrieveTasksFromStorage();
   clearExistingTasks();
-  retrieveTasksFromStorage();
-  allTasks.forEach(assignTasks);
+  tasks.forEach(assignTasks);
 }
