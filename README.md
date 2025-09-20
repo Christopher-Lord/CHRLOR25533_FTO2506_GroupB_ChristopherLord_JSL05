@@ -7,8 +7,8 @@ This project is a task management system where **tasks are persisted in local st
 ## Setup Instructions
 
 1. Clone or download this repo
-2. If downloaded, extract files and open index.html either in VSCode or straight in your browser
-3. If opened in VSCode, use the Live Server extension to view the web page
+2. If downloaded, extract files and open index.html in VSCode, opening it directly in your browser will not work
+3. Then use the Live Server extension to view the web page
 4. Tasks will show up dynamically and you can click them to view their information
 5. Add new tasks with the **NEW** Add Task button!
 
